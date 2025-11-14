@@ -1,0 +1,167 @@
+Q1.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| fbs                |
+| hotel              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q2.
+mysql> create table countries
+    -> (country_id int(11), country_name varchar(20), region_id int(11));
+Query OK, 0 rows affected, 2 warnings (0.08 sec)
+
+mysql> desc countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | YES  |     | NULL    |       |
+| country_name | varchar(20) | YES  |     | NULL    |       |
+| region_id    | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q3.
+mysql> create table jobs
+    -> (job_id int primary key,
+    -> job_title varchar(15) not null,
+    -> min_salary int,
+    -> max_salary int check(max_salary <= 25000));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show create table jobs;
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table
+                                                                                                                                                          |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| jobs  | CREATE TABLE `jobs` (
+  `job_id` int NOT NULL,
+  `job_title` varchar(15) NOT NULL,
+  `min_salary` int DEFAULT NULL,
+  `max_salary` int DEFAULT NULL,
+  PRIMARY KEY (`job_id`),
+  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` <= 25000))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc jobs;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| job_id     | int         | NO   | PRI | NULL    |       |
+| job_title  | varchar(15) | NO   |     | NULL    |       |
+| min_salary | int         | YES  |     | NULL    |       |
+| max_salary | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q4.
+mysql> create table job_history
+    -> (emp_id int, start_date int, end_date int,
+    -> job_id int, dept_id int);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc job_history;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| emp_id     | int  | YES  |     | NULL    |       |
+| start_date | int  | YES  |     | NULL    |       |
+| end_date   | int  | YES  |     | NULL    |       |
+| job_id     | int  | YES  |     | NULL    |       |
+| dept_id    | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q5.
+mysql> alter table countries
+    -> modify column country_id int unique;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | YES  | UNI | NULL    |       |
+| country_name | varchar(20) | YES  |     | NULL    |       |
+| region_id    | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q6.
+mysql> alter table jobs
+    -> modify column min_salary int default 8000;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table jobs
+    -> modify column max_salary int default null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc jobs;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| job_id     | int         | NO   | PRI | NULL    |       |
+| job_title  | varchar(15) | NO   |     | NULL    |       |
+| min_salary | int         | YES  |     | 8000    |       |
+| max_salary | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show create table jobs;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table
+
+|
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| jobs  | CREATE TABLE `jobs` (
+  `job_id` int NOT NULL,
+  `job_title` varchar(15) NOT NULL,
+  `min_salary` int DEFAULT '8000',
+  `max_salary` int DEFAULT NULL,
+  PRIMARY KEY (`job_id`),
+  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` <= 25000))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q7.
+mysql> create table department
+    -> (dept_id int default 0,
+    -> dept_name varchar(20) not null,
+    -> manager_id int default 0,
+    -> location_id int,
+    -> primary key(dept_id, manager_id));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc department;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| dept_id     | int         | NO   | PRI | 0       |       |
+| dept_name   | varchar(20) | YES  |     | NULL    |       |
+| manager_id  | int         | NO   | PRI | 0       |       |
+| location_id | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
