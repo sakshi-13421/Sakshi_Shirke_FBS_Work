@@ -36,7 +36,7 @@ mysql> create table jobs
     -> (job_id int primary key,
     -> job_title varchar(15) not null,
     -> min_salary int,
-    -> max_salary int check(max_salary <= 25000));
+    -> max_salary int check(max_salary > 25000));
 Query OK, 0 rows affected (0.10 sec)
 
 mysql> show create table jobs;
@@ -50,7 +50,7 @@ mysql> show create table jobs;
   `min_salary` int DEFAULT NULL,
   `max_salary` int DEFAULT NULL,
   PRIMARY KEY (`job_id`),
-  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` <= 25000))
+  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` > 25000))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
 +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
@@ -124,7 +124,7 @@ mysql> desc jobs;
 | Field      | Type        | Null | Key | Default | Extra |
 +------------+-------------+------+-----+---------+-------+
 | job_id     | int         | NO   | PRI | NULL    |       |
-| job_title  | varchar(15) | YES  |     | NULL    |       |
+| job_title  | varchar(15) | YES  |     |         |       |
 | min_salary | int         | YES  |     | 8000    |       |
 | max_salary | int         | YES  |     | NULL    |       |
 +------------+-------------+------+-----+---------+-------+
@@ -142,20 +142,20 @@ mysql> show create table jobs;
   `min_salary` int DEFAULT '8000',
   `max_salary` int DEFAULT NULL,
   PRIMARY KEY (`job_id`),
-  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` <= 25000))
+  CONSTRAINT `jobs_chk_1` CHECK ((`max_salary` > 25000))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
 +-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 mysql> insert into jobs(job_id,min_salary, max_salary) values(101, 10000, 15000);
 Query OK, 1 row affected (0.08 sec)
-mysql> insert into jobs(job_id, job_title, min_salary, max_salary) values(102,'Web developer', 12000, 20000);
+mysql> insert into jobs(job_id, job_title, max_salary) values(102,'Web developer', 20000);
 Query OK, 1 row affected (0.07 sec)
 mysql> table jobs;
 +--------+---------------+------------+------------+
 | job_id | job_title     | min_salary | max_salary |
 +--------+---------------+------------+------------+
 |    101 |               |      10000 |      15000 |
-|    102 | Web developer |      12000 |      20000 |
+|    102 | Web developer |       8000 |      20000 |
 +--------+---------------+------------+------------+
 2 rows in set (0.00 sec)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -179,6 +179,7 @@ mysql> desc department;
 | location_id | int         | YES  |     | NULL    |       |
 +-------------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
+
 
 
 
