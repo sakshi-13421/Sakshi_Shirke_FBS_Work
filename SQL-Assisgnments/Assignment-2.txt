@@ -3,7 +3,6 @@
      **mentioned in the schema description above.**
 
 
-
 mysql> create table Member
 
 &nbsp;   -> (m\_id int primary key unique,
@@ -40,8 +39,6 @@ mysql> create table Books
 
 Query OK, 0 rows affected (0.04 sec)
 
-
-
 mysql> create table Issue
 
 &nbsp;   -> (lib\_issue\_id int primary key,
@@ -61,15 +58,9 @@ mysql> create table Issue
 Query OK, 0 rows affected (0.07 sec)
 
 
-
-
-
 **Q2).View the structure of the tables.**
 
-
-
 mysql> desc Member;
-
 +------------------+--------------+------+-----+---------+-------+
 
 | Field            | Type         | Null | Key | Default | Extra |
@@ -93,13 +84,9 @@ mysql> desc Member;
 | penalty\_amount   | decimal(7,2) | YES  |     | NULL    |       |
 
 +------------------+--------------+------+-----+---------+-------+
-
 8 rows in set (0.02 sec)
 
-
-
 mysql> desc Books;
-
 +-------------+--------------+------+-----+---------+-------+
 
 | Field       | Type         | Null | Key | Default | Extra |
@@ -120,10 +107,7 @@ mysql> desc Books;
 
 5 rows in set (0.00 sec)
 
-
-
 mysql> desc Issue;
-
 +--------------+------+------+-----+---------+-------+
 
 | Field        | Type | Null | Key | Default | Extra |
@@ -141,23 +125,18 @@ mysql> desc Issue;
 | return\_date  | date | YES  |     | NULL    |       |
 
 +--------------+------+------+-----+---------+-------+
-
 5 rows in set (0.01 sec)
 
-
 **Q3). Drop the Member table**
-
 
 mysql> drop table Members;
 
 Query OK, 0 rows affected (0.03 sec)
 
 
-
 **Q4).Create the table Member again as per the schema description with the**
 
     **following constraints.**
-
 
 mysql> create table Members
 
@@ -167,10 +146,7 @@ mysql> create table Members
 
 Query OK, 0 rows affected (0.04 sec)
 
-
-
 mysql> desc Members;
-
 +-----------------+-------------+------+-----+---------+-------+
 
 | Field           | Type        | Null | Key | Default | Extra |
@@ -182,15 +158,10 @@ mysql> desc Members;
 | membership\_type| varchar(20) | YES  |     | NULL    |       |
 
 +-----------------+-------------+------+-----+---------+-------+
-
 2 rows in set (0.00 sec)
 
-
-
 **Q5). Modify the table Member increase the width of the member name to 30**
-
      characters
-
 
 mysql> alter table Member
 
@@ -199,7 +170,6 @@ mysql> alter table Member
 Query OK, 0 rows affected (0.11 sec)
 
 Records: 0  Duplicates: 0  Warnings: 0
-
 
 mysql> desc Member;
 +------------------+--------------+------+-----+---------+-------+
@@ -225,13 +195,9 @@ mysql> desc Member;
 | penalty\_amount   | decimal(7,2) | YES  |     | NULL    |       |
 
 +------------------+--------------+------+-----+---------+-------+
-
 8 rows in set (0.00 sec)
 
-
-
 **Q6). Add a column named as Reference of Char(30) to Issue table.**
-
 
 mysql> alter table Issue
 
@@ -241,10 +207,7 @@ Query OK, 0 rows affected (0.07 sec)
 
 Records: 0  Duplicates: 0  Warnings: 0
 
-
-
 mysql> desc Issue;
-
 +--------------+----------+------+-----+---------+-------+
 
 | Field        | Type     | Null | Key | Default | Extra |
@@ -264,17 +227,11 @@ mysql> desc Issue;
 | name          | char(30) | YES  |     | NULL    |       |
 
 +--------------+----------+------+-----+---------+-------+
-
 6 rows in set (0.00 sec)
-
-
 
 **Q7). Delete/Drop the column Reference from Issue.**
 
-
-
 **Q8). Rename the table Issue to Lib\_Issue.**
-
 
 mysql> alter table Issue
 
@@ -283,9 +240,7 @@ mysql> alter table Issue
 Query OK, 0 rows affected (0.03 sec)
 
 
-
 **Q9). Insert following data in table Member**
-
 
 mysql> table Member;
 +------+---------------+-----------+---------------+-----------------+----------+------------------+----------------+
@@ -299,12 +254,9 @@ mysql> table Member;
 |    2 | Meena Shedgae | Pune      | 2025-11-22    | Annual          |     1000 |                3 |           NULL |
 
 +------+---------------+-----------+---------------+-----------------+----------+------------------+----------------+
-
 2 rows in set (0.00 sec)
 
-
 **Q10). Insert at least 5 records with suitable data.**
-
 
 mysql> INSERT INTO Books VALUES 
 
@@ -319,7 +271,6 @@ mysql> INSERT INTO Books VALUES
 &nbsp;   -> (105, 'Introduction to SQL', 'James Groff', 480.00, 'Technology');
 
 Query OK, 1 row affected (0.01 sec)
-
 
 mysql> table Books;
 +------+----------------------+--------------------+--------+------------+
@@ -339,16 +290,11 @@ mysql> table Books;
 |  105 | Introduction to SQL  | James Groff        | 480.00 | Technology |
 
 +------+----------------------+--------------------+--------+------------+
-
 5 rows in set (0.00 sec)
-
-
 
 **Q11). Modify the column Member\_name. Decrease the width of the member**
 
       **name to 20 characters. (If it does not allow state the reason for that)**
-
-
 
 mysql> alter table Member
 
@@ -359,9 +305,7 @@ Query OK, 2 rows affected (0.21 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 
 
-
 mysql> desc Member;
-
 +------------------+--------------+------+-----+---------+-------+
 
 | Field            | Type         | Null | Key | Default | Extra |
@@ -385,16 +329,25 @@ mysql> desc Member;
 | penalty\_amount   | decimal(7,2) | YES  |     | NULL    |      |
 
 +------------------+--------------+------+-----+---------+-------+
-
 8 rows in set (0.00 sec)
-
-
 
 **Q12). Try to insert a record with Max\_Books\_Allowed = 110, Observe the**
 
     **error that comes.**
+mysql> alter table member
+    -> modify column max_book_allowed int CHECK (max_book_allowed <= 100);
+Query OK, 3 rows affected (0.20 sec)
+Records: 3  Duplicates: 0  Warnings: 0
 
+13) Generate another table named Member101 using a Create command	
+    along with a simple SQL query on member table.
 
+mysql> INSERT INTO Member
+    -> VALUES (4, 'Shravani Pawar', 'Pune', '2025-11-23', 'Annual', 1000, 110, 50);
+ERROR 3819 (HY000): Check constraint 'member_chk_1' is violated.
+
+mysql> CREATE TABLE Member101 AS
+    -> SELECT * FROM Member;
 
 **Q14). Add the constraints on columns max\_books\_allowed and penalty\_amt**
 
@@ -404,7 +357,6 @@ mysql> desc Member;
 
 	**b. penalty\_amt maximum 1000**
 
-
 mysql> alter table Member
 
 &nbsp;   -> modify column max\_book\_allowed int check(max\_book\_allowed < 100);
@@ -413,8 +365,6 @@ Query OK, 2 rows affected (0.17 sec)
 
 Records: 2  Duplicates: 0  Warnings: 0
 
-
-
 mysql> alter table Member
 
 &nbsp;   -> modify column penalty\_amount decimal(7,2) check(penalty\_amount <= 1000);
@@ -422,8 +372,6 @@ mysql> alter table Member
 Query OK, 2 rows affected (0.18 sec)
 
 Records: 2  Duplicates: 0  Warnings: 0
-
-
 
 | Member | CREATE TABLE `member` (
 
@@ -454,15 +402,10 @@ Records: 2  Duplicates: 0  Warnings: 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4\_0900\_ai\_ci |
 
 
-
 **Q15). Drop the table books.**
 
-
 mysql> drop table Books;
-
 Query OK, 0 rows affected (0.03 sec)
-
-
 
 **Q16). Create table Books again as per the schema description with the**
 
@@ -485,7 +428,6 @@ mysql> create table book
 
 Query OK, 0 rows affected (0.11 sec)
 
-
 mysql> desc book;
 +-----------+-------------+------+-----+---------+-------+
 
@@ -501,10 +443,7 @@ mysql> desc book;
 
 +-----------+-------------+------+-----+---------+-------+
 
-
-
 **Q17). Insert data in Book table as follows:**
-
 
 mysql> insert into Books values(101, 'Let us C', 'Denis Ritchie', 450, 'System'),
 
@@ -517,8 +456,6 @@ mysql> insert into Books values(101, 'Let us C', 'Denis Ritchie', 450, 'System')
 Query OK, 4 rows affected (0.07 sec)
 
 Records: 4  Duplicates: 0  Warnings: 0
-
-
 
 mysql> table Books;
 +------+---------------------+---------------+--------+----------+
@@ -536,14 +473,10 @@ mysql> table Books;
 |  104 | PL SQL-Ref          | Scott Urman   | 750.00 | Database |
 
 +------+---------------------+---------------+--------+----------+
-
 4 rows in set (0.00 sec)
 
 
-
 **18) Insert more records in Book table.**
-
-
 
 mysql> INSERT INTO Books VALUES
 
@@ -560,9 +493,7 @@ mysql> INSERT INTO Books VALUES
 Query OK, 1 row affected (0.01 sec)
 
 
-
 mysql> table Books;
-
 +------+-------------------------+------------------+---------+------------+
 
 | b\_no | b\_name                | author\_name     | cost    | category   |
@@ -590,31 +521,19 @@ mysql> table Books;
 |  110 | Machine Learning Basics | Tom M. Mitchell  |    NULL | Technology |
 
 +------+-------------------------+------------------+---------+------------+
-
 10 rows in set (0.00 sec)
-
-
 
 **19) View the data in the tables using simple SQL query.**
 
-
-
 mysql> table Books;
 
-
-
 **20) Insert into Book following data.**
-
-
 
 mysql> insert into Books values(105, 'National Geographic', 'Adis Scott', 1000, 'Science');
 
 Query OK, 1 row affected (0.07 sec)
 
-
-
 mysql> table Books;
-
 +------+---------------------+---------------+---------+----------+
 
 | b\_no | b\_name            | author\_name   | cost   | category |
@@ -632,10 +551,7 @@ mysql> table Books;
 |  105 | National Geographic | Adis Scott    | 1000.00 | Science  |
 
 +------+---------------------+---------------+---------+----------+
-
 5 rows in set (0.00 sec)
-
-
 
 **Q21). Rename the table Lib\_Issue to Issue.**
 
@@ -647,14 +563,11 @@ mysql> alter table Lib\_Issue
 Query OK, 0 rows affected (0.10 sec)
 
 
-
 **Q22). Drop table Issue.**
-
 
 mysql> drop table Issue;
 
 Query OK, 0 rows affected (0.03 sec)
-
 
 
 **Q23). As per the given structure Create table Issue again with following**
@@ -691,7 +604,6 @@ mysql> create table Issues
 Query OK, 0 rows affected (0.16 sec)
 
 
-
 mysql> desc Issues;
 +--------------+------+------+-----+---------+-------+
 
@@ -711,7 +623,6 @@ mysql> desc Issues;
 
 +--------------+------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
-
 
 **24) Insert following data into Issue table.**
 
@@ -745,7 +656,6 @@ REFERENCES `member` (`m_id`))
 **27) Now enable the constraints of Issue table. Observe the error**
 
 
-
 **28) Delete the record inserted at Q-27) and enable the constraints.**
 
 
@@ -755,7 +665,6 @@ REFERENCES `member` (`m_id`))
 mysql> delete from Member where m_id = 1;
 ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`fbs`.`issue`, CONSTRAINT `issue_ibfk_2` FOREIGN KEY (`m_id`)
 REFERENCES `member` (`m_id`))
-
 
 **30) View the data and structure of all the three tables Member,**
     **Issue, Book.**
@@ -913,3 +822,4 @@ Query OK, 0 rows affected (0.03 sec)
 
 mysql> drop table book;
 Query OK, 0 rows affected (0.03 sec)
+
