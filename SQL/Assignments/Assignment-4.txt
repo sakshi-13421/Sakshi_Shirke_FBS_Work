@@ -1,0 +1,340 @@
+1. Write a query to display the names (first_name, last_name) using alias
+name “First Name", "Last Name.
+
+mysql> select first_name, last_name from employees;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Sakshi     | Shirke    |
+| Sumit      | Yewale    |
+| Meena      | Shedage   |
+| Prachi     | Rajpure   |
+| Shravani   | Pawar     |
+| Tanvi      | Dhiwar    |
+| Anuj       | Jamdade   |
+| Suraj      | Shelar    |
+| Sakshi     | Dhude     |
+| Ankita     | Landage   |
+| Anita      | Shelar    |
++------------+-----------+
+11 rows in set (0.00 sec)
+
+
+2. Write a query to get unique department ID from employee table.
+
+mysql> select distinct dno from emp;
++------+
+| dno  |
++------+
+|  101 |
+|  102 |
+|  103 |
+|  104 |
+|  105 |
++------+
+5 rows in set (0.00 sec)
+
+
+3. Write a query to get all employee details from the employee table order
+by first name, descending
+
+mysql> select * from employees order by first_name desc;
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| eid | first_name | last_name | phone_no   | hire_date  | job_id   | salary   | commission | manager_id | dept_id | gender |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| 105 | Tanvi      | Dhiwar    |  774369852 | 2020-12-12 | it_prog  |  4800.00 |       0.10 |        103 |      60 | F      |
+| 107 | Suraj      | Shelar    | 7823569874 | 2014-02-28 | it_prog  |  4200.00 |       0.10 |        114 |      30 | M      |
+| 101 | Sumit      | Yewale    | 8745120023 | 2025-12-30 | ad_vp    | 17000.00 |       0.10 |        200 |      10 | M      |
+| 104 | Shravani   | Pawar     | 8854520125 | 2011-04-01 | it_prog  |  6000.00 |       0.10 |        103 |      60 | F      |
+| 100 | Sakshi     | Shirke    | 8596452145 | 2025-09-13 | ad_press | 24000.00 |       0.10 |        200 |      10 | F      |
+| 108 | Sakshi     | Dhude     | 9965214001 | 2022-01-08 | sa_man   | 12000.00 |       0.10 |        145 |      80 | F      |
+| 103 | Prachi     | Rajpure   | 7741200899 | 2025-06-14 | it_prog  |  9000.00 |       0.10 |        103 |      60 | F      |
+| 102 | Meena      | Shedage   | 9654785412 | 2024-05-14 | ad_vp    | 17000.00 |       0.10 |        200 |      10 | F      |
+| 106 | Anuj       | Jamdade   | 8541200032 | 2015-12-15 | it_prog  |  4800.00 |       0.10 |        103 |      60 | M      |
+| 109 | Ankita     | Landage   | 7387596547 | 2011-09-14 | sa_man   |  9000.00 |       0.10 |        145 |      80 | F      |
+| 110 | Anita      | Shelar    | 8987895412 | 2020-05-01 | ad_press | 50000.00 |       0.10 |        114 |      30 | F      |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+11 rows in set (0.00 sec)
+
+
+4. Write a query to get the names (first_name, last_name), salary, PF of all
+the employees (PF is calculated as 15% of salary).
+
+mysql> select first_name, last_name, salary, salary * 0.15 as 'PF of Emp' from employees;
++------------+-----------+----------+-----------+
+| first_name | last_name | salary   | PF of Emp |
++------------+-----------+----------+-----------+
+| Sakshi     | Shirke    | 24000.00 | 3600.0000 |
+| Sumit      | Yewale    | 17000.00 | 2550.0000 |
+| Meena      | Shedage   | 17000.00 | 2550.0000 |
+| Prachi     | Rajpure   |  9000.00 | 1350.0000 |
+| Shravani   | Pawar     |  6000.00 |  900.0000 |
+| Tanvi      | Dhiwar    |  4800.00 |  720.0000 |
+| Anuj       | Jamdade   |  4800.00 |  720.0000 |
+| Suraj      | Shelar    |  4200.00 |  630.0000 |
+| Sakshi     | Dhude     | 12000.00 | 1800.0000 |
+| Ankita     | Landage   |  9000.00 | 1350.0000 |
+| Anita      | Shelar    | 50000.00 | 7500.0000 |
++------------+-----------+----------+-----------+
+11 rows in set (0.00 sec)
+
+
+5. Write a query to get the employee ID, names (first_name, last_name),
+salary in ascending order of salary.
+
+mysql> select eid, first_name, last_name, salary from employees order by salary;
++-----+------------+-----------+----------+
+| eid | first_name | last_name | salary   |
++-----+------------+-----------+----------+
+| 107 | Suraj      | Shelar    |  4200.00 |
+| 105 | Tanvi      | Dhiwar    |  4800.00 |
+| 106 | Anuj       | Jamdade   |  4800.00 |
+| 104 | Shravani   | Pawar     |  6000.00 |
+| 103 | Prachi     | Rajpure   |  9000.00 |
+| 109 | Ankita     | Landage   |  9000.00 |
+| 108 | Sakshi     | Dhude     | 12000.00 |
+| 101 | Sumit      | Yewale    | 17000.00 |
+| 102 | Meena      | Shedage   | 17000.00 |
+| 100 | Sakshi     | Shirke    | 24000.00 |
+| 110 | Anita      | Shelar    | 50000.00 |
++-----+------------+-----------+----------+
+11 rows in set (0.00 sec)
+
+6. Write a query to get the total salaries payable to employees.
+
+mysql> select sum(salary) as 'Total Salary' from employees;
++--------------+
+| Total Salary |
++--------------+
+|    232800.00 |
++--------------+
+1 row in set (0.01 sec)
+
+7. Write a query to get the maximum and minimum salary from employees
+table.
+
+mysql> select min(salary), max(salary) from employees;
++-------------+-------------+
+| min(salary) | max(salary) |
++-------------+-------------+
+|     4200.00 |    75000.00 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+8. Write a query to get the average salary and number of employees in the
+employees table.
+
+mysql> select avg(salary), count(eid) from employees;
++--------------+------------+
+| avg(salary)  | count(eid) |
++--------------+------------+
+| 19400.000000 |         12 |
++--------------+------------+
+1 row in set (0.00 sec)
+
+9. Write a query to get the number of employees working with the
+company.
+
+mysql> select count(*) as 'Total Employee' from employees;
++----------------+
+| Total Employee |
++----------------+
+|             12 |
++----------------+
+1 row in set (0.00 sec)
+
+10.Write a query to get the number of jobs available in the employees table
+
+mysql> select count(distinct job_id) from employees;
++------------------------+
+| count(distinct job_id) |
++------------------------+
+|                      4 |
++------------------------+
+1 row in set (0.00 sec)
+
+11.Write a query to select first 10 records from a table.
+
+mysql> select * from employees order by eid limit 10;
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| eid | first_name | last_name | phone_no   | hire_date  | job_id   | salary   | commission | manager_id | dept_id | gender |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| 100 | Sakshi     | Shirke    | 8596452145 | 2025-09-13 | ad_press | 24000.00 |       0.10 |        200 |      10 | F      |
+| 101 | Sumit      | Yewale    | 8745120023 | 2025-12-30 | ad_vp    | 17000.00 |       0.10 |        200 |      10 | M      |
+| 102 | Meena      | Shedage   | 9654785412 | 2024-05-14 | ad_vp    | 17000.00 |       0.10 |        200 |      10 | F      |
+| 103 | Prachi     | Rajpure   | 7741200899 | 2025-06-14 | it_prog  |  9000.00 |       0.10 |        103 |      60 | F      |
+| 104 | Shravani   | Pawar     | 8854520125 | 2011-04-01 | it_prog  |  6000.00 |       0.10 |        103 |      60 | F      |
+| 105 | Tanvi      | Dhiwar    |  774369852 | 2020-12-12 | it_prog  |  4800.00 |       0.10 |        103 |      60 | F      |
+| 106 | Anuj       | Jamdade   | 8541200032 | 2015-12-15 | it_prog  |  4800.00 |       0.10 |        103 |      60 | M      |
+| 107 | Suraj      | Shelar    | 7823569874 | 2014-02-28 | it_prog  |  4200.00 |       0.10 |        114 |      30 | M      |
+| 108 | Sakshi     | Dhude     | 9965214001 | 2022-01-08 | sa_man   | 12000.00 |       0.10 |        145 |      80 | F      |
+| 109 | Ankita     | Landage   | 7387596547 | 2011-09-14 | sa_man   |  9000.00 |       0.10 |        145 |      80 | F      |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+10 rows in set (0.00 sec)
+
+
+12.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range $10,000 through $15,000
+ 
+mysql> select first_name, last_name, salary from employees
+    -> where salary not between 10000 and 15000 ;
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| Sakshi     | Shirke    | 24000.00 |
+| Sumit      | Yewale    | 17000.00 |
+| Meena      | Shedage   | 17000.00 |
+| Prachi     | Rajpure   |  9000.00 |
+| Shravani   | Pawar     |  6000.00 |
+| Tanvi      | Dhiwar    |  4800.00 |
+| Anuj       | Jamdade   |  4800.00 |
+| Suraj      | Shelar    |  4200.00 |
+| Ankita     | Landage   |  9000.00 |
+| Anita      | Shelar    | 50000.00 |
++------------+-----------+----------+
+10 rows in set (0.07 sec)
+
+
+13.Write a query to display the name (first_name, last_name) and
+department ID of all employees in departments 30 or 100 in ascending
+order.
+
+mysql> select first_name, last_name, dept_id from employees where dept_id in (30,100) order by dept_id;
++------------+-----------+---------+
+| first_name | last_name | dept_id |
++------------+-----------+---------+
+| Suraj      | Shelar    |      30 |
+| Anita      | Shelar    |      30 |
++------------+-----------+---------+
+2 rows in set (0.07 sec)
+
+
+14.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range $10,000 through $15,000
+and are in department 30 or 100.
+
+mysql> select first_name, last_name, salary from employees
+    -> where salary not in(10000,15000)
+    -> and dept_id in (30,100);
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| Suraj      | Shelar    |  4200.00 |
+| Anita      | Shelar    | 50000.00 |
++------------+-----------+----------+
+
+
+15.Write a query to display the name (first_name, last_name) and hire date
+for all employees who were hired in 1987.
+
+mysql> select first_name,last_name,hire_date from employees where hire_date>='1987-01-01' and hire_date<='1987-12-31';
++------------+-----------+------------+
+| first_name | last_name | hire_date  |
++------------+-----------+------------+
+| Anisha     | Jadhav    | 1987-09-13 |
++------------+-----------+------------+
+1 row in set (0.00 sec)
+
+
+16.Write a query to display the first_name of all employees who have both
+"a" and "i" in their first name
+
+mysql> select first_name from employees where
+    -> first_name like '%a%' and first_name like '%i%';
++------------+
+| first_name |
++------------+
+| Sakshi     |
+| Prachi     |
+| Shravani   |
+| Tanvi      |
+| Sakshi     |
+| Ankita     |
+| Anita      |
+| Anisha     |
++------------+
+8 rows in set (0.00 sec)
+
+
+17.Write a query to display the last name, job, and salary for all employees
+whose job is that of a Programmer or a Shipping Clerk, and whose salary
+is not equal to $4,500, $10,000, or $15,000.
+
+mysql> select last_name, job_id, salary from employees
+    -> where job_id in('it_prog', 'ad_press')
+    -> and salary not in(4500, 10000, 15000);
++-----------+----------+----------+
+| last_name | job_id   | salary   |
++-----------+----------+----------+
+| Shirke    | ad_press | 24000.00 |
+| Rajpure   | it_prog  |  9000.00 |
+| Pawar     | it_prog  |  6000.00 |
+| Dhiwar    | it_prog  |  4800.00 |
+| Jamdade   | it_prog  |  4800.00 |
+| Shelar    | it_prog  |  4200.00 |
+| Shelar    | ad_press | 50000.00 |
+| Jadhav    | ad_press | 75000.00 |
++-----------+----------+----------+
+8 rows in set (0.00 sec)
+
+
+18.Write a query to display the last name of employees whose names have
+exactly 6 characters.
+
+mysql> select last_name from employees where length(last_name)=6;
++-----------+
+| last_name |
++-----------+
+| Shirke    |
+| Yewale    |
+| Dhiwar    |
+| Shelar    |
+| Shelar    |
+| Jadhav    |
++-----------+
+6 rows in set (0.01 sec)
+
+
+19.Write a query to display the last name of employees having 'e' as the third
+character.
+
+mysql> select last_name from employees where last_name like '__e%';
++-----------+
+| last_name |
++-----------+
+| Shedage   |
+| Shelar    |
+| Shelar    |
++-----------+
+3 rows in set (0.00 sec)
+
+
+20.Write a query to display the jobs/designations available in the employees
+table.
+
+mysql> select distinct job_id from employees;
++----------+
+| job_id   |
++----------+
+| ad_press |
+| ad_vp    |
+| it_prog  |
+| sa_man   |
++----------+
+4 rows in set (0.01 sec)
+
+
+21.Write a query to select all record from employees where last name in
+'shirke', 'shedage', 'pawar' and 'shelar'
+
+mysql> select * from employees where last_name in ('shirke','shedage','shelar','pawar');
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| eid | first_name | last_name | phone_no   | hire_date  | job_id   | salary   | commission | manager_id | dept_id | gender |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+| 100 | Sakshi     | Shirke    | 8596452145 | 2025-09-13 | ad_press | 24000.00 |       0.10 |        200 |      10 | F      |
+| 102 | Meena      | Shedage   | 9654785412 | 2024-05-14 | ad_vp    | 17000.00 |       0.10 |        200 |      10 | F      |
+| 104 | Shravani   | Pawar     | 8854520125 | 2011-04-01 | it_prog  |  6000.00 |       0.10 |        103 |      60 | F      |
+| 107 | Suraj      | Shelar    | 7823569874 | 2014-02-28 | it_prog  |  4200.00 |       0.10 |        114 |      30 | M      |
+| 110 | Anita      | Shelar    | 8987895412 | 2020-05-01 | ad_press | 50000.00 |       0.10 |        114 |      30 | F      |
++-----+------------+-----------+------------+------------+----------+----------+------------+------------+---------+--------+
+5 rows in set (0.00 sec)
